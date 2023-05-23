@@ -1,15 +1,15 @@
 import {
-  Button,
   Modal,
   ModalBody,
   ModalCloseButton,
   ModalContent,
   ModalHeader,
   ModalOverlay,
-  ModalFooter,
   HStack,
   PinInput,
   PinInputField,
+  ModalFooter,
+  Button,
 } from "@chakra-ui/react";
 
 interface Props {
@@ -32,7 +32,7 @@ export function PinInputModal({ isOpen, onClose, onPinComplete }: Props) {
         <ModalCloseButton />
         <ModalBody>
           <HStack>
-            <PinInput onComplete={handlePinComplete}>
+            <PinInput onComplete={handlePinComplete} mask>
               <PinInputField />
               <PinInputField />
               <PinInputField />
@@ -41,12 +41,11 @@ export function PinInputModal({ isOpen, onClose, onPinComplete }: Props) {
           </HStack>
         </ModalBody>
 
-        {/* <ModalFooter>
-          <Button colorScheme="teal" mr={3} onClick={onClose}>
-            読み取り
+        <ModalFooter>
+          <Button colorScheme="gray" mr={3} onClick={onClose}>
+            閉じる
           </Button>
-          <Button variant="ghost">Secondary Action</Button>
-        </ModalFooter> */}
+        </ModalFooter>
       </ModalContent>
     </Modal>
   );

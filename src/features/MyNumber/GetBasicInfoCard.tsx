@@ -18,7 +18,6 @@ export function GetBasicInfoCard() {
   };
 
   const handlePinComplete = async (pin: string) => {
-    console.log("handlePinComplete", pin);
     const myNumberCard = await MNCDriver.connect();
     const myNumber = await myNumberCard.getMyNumber(pin);
 

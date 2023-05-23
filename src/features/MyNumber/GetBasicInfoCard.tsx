@@ -10,7 +10,7 @@ import {
 import { PinInputModal } from "./PinInputModal";
 import { MyNumberCard as MNCDriver } from "my_number_card_driver";
 
-export function MyNumberCard() {
+export function GetBasicInfoCard() {
   const { isOpen, onOpen, onClose } = useDisclosure();
 
   const handleRead = () => {
@@ -30,7 +30,7 @@ export function MyNumberCard() {
       <Card direction={{ base: "column", sm: "row" }}>
         <CardBody>
           <Heading size="md">マイナンバーカード</Heading>
-          <Text>NFCマイナンバーカードリーダーサンプル</Text>
+          <Text>基本4情報(住所・氏名・年齢・性別)を取得</Text>
         </CardBody>
         <CardFooter>
           <Button colorScheme="teal" onClick={handleRead}>

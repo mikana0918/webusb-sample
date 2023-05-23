@@ -3,15 +3,18 @@ import {
   Card,
   CardBody,
   CardFooter,
+  Code,
   Heading,
   Text,
   useDisclosure,
+  useToast,
 } from "@chakra-ui/react";
 import { PinInputModal } from "./PinInputModal";
 import { MyNumberCard as MNCDriver } from "my_number_card_driver";
 
 export function GetBasicInfoCard() {
   const { isOpen, onOpen, onClose } = useDisclosure();
+  const toast = useToast();
 
   const handleRead = () => {
     onOpen();
@@ -19,9 +22,29 @@ export function GetBasicInfoCard() {
 
   const handlePinComplete = async (pin: string) => {
     const myNumberCard = await MNCDriver.connect();
-    const myNumber = await myNumberCard.getMyNumber(pin);
+    const personalData = await myNumberCard.getPersonalData(pin);
 
-    console.log("myNumber", myNumber);
+    onClose();
+
+    toast({
+      title: "基本4情報の読み取りに成功しました",
+      description: (
+        <>
+          <Text>
+            あなたの住所は <Code>{personalData.address}です</Code>
+          </Text>
+          <Text>
+            あなたの誕生日は <Code>{personalData.birthday.toString()}です</Code>
+          </Text>
+          <Text>
+            あなたの名前は <Code>{personalData.name}です</Code>
+          </Text>
+          <Text>
+            あなたの性別は <Code>{personalData.sex}です</Code>
+          </Text>
+        </>
+      ),
+    });
   };
 
   return (
